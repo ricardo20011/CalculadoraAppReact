@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const crypto = require('crypto-js'); //importar la biblioteca crypto-js
+        const fs = require('fs'); // importar la biblioteca file system de node.js
+
+        const key = crypto.enc.Utf8.parse('hola');
+        const iv = crypto.enc.Utf8.parse('12345');
+
+        // Leer el archivo de video
+        const filePath = 'C:\\Users\\error\\Desktop\\video.mp4';
+        const data = fs.readFileSync(filePath);
+
+        // Encriptar el archivo de video
+        const cipher = crypto.AES.encrypt(data, key, { iv: iv });
+        const encryptedData = cipher.ciphertext;
+
+        // Escribir el archivo encriptado
+        fs.writeFileSync('path/to/encrypted_video.mp4', encryptedData);
+        console.log('El video ha sido encriptado exitosamente');
+    </script>
+</body>
+</html>
